@@ -1,11 +1,3 @@
-$('body').delegate('.content-item','click',categorySelect);
-$('body').delegate('.delete','click', itemDelete);
-$('body').delegate('.edit','click',editItem);
-$('.location-catalog').click(backPage);
-$('.location-model').click(backPage);
-$('.location-modification').click(backPage);
-$('.catalog-name-button').click(changeCatalogName);
-$('.add-button').click(addItem);
-$('.close-button').click(()=>{popupDisplay('none');cleanPopUp();});
-$('.serealise-button').click(serealiseForm);
-$('body').delegate('.picture-edit','click',addPicture);
+$('.close-popup-button').click(()=>{hidePopup();});
+$('.catalog-name-button').click(()=>{showPopup('.catalog-form');});
+$('.submit-popup-button').click(submitForm)

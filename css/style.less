@@ -1,70 +1,50 @@
-input[type="file"]{
-	height:30px;
-	width:200px;
+div{
+	// border:1px solid red;
+	margin:auto;
+}
+body{
+	font-family: "Open Sans", sans-serif;
+	color: #1c448d;
 }
 button{
-	margin:1em;
-}
-img{
-	max-width: 150px;
-	max-height: 150px;
-}
-.catalog-name-wrapper{
-	margin: 2em;
-}
-.catalog-name{
-	font-size: 1.5em;
-}
-.column-name,.item-id,.picture-loader,{
-	display:none;
-}
-.content{
-	margin:auto;
-	display:flex;
-	justify-content: space-around;
-	flex-wrap: wrap;
-}
-.content-item{
-	cursor: pointer;
-	border:1px solid grey;
-	margin:1em;
-	padding: 1em;
+	padding: 5px;
+	border-radius: 2px;
+	background: rgb(28, 68, 141);
+	color: #fff;
 	text-align: center;
+	border: none;
+	font-size: 14px;
+	font-weight: 300;
+	cursor: pointer;
 }
-.location{
-	cursor:pointer;
+button:hover{
+	background:rgba(28, 68, 141, 0.8);
 }
 .wrapper-popup{
 	position: absolute;
 	top:0;
-	left: 0;
-	height:100vh;
-	width:100vw;
-	background-color: rgba(0,0,0,0.5);
-	display:none;
+	left:0;
+	height: 100vh;
+	width: 100vw;
+	display: flex;
+	background:rgba(0,0,0,0.5);
 }
 .popup{
-	margin:auto;
-	padding:1em;
-	background-color:white;
-	text-align: center;
-	input, textarea{
-		margin-bottom: 1em;
-		border:1px solid grey;
-		padding:1em;
-		width: 300px;
+	background:white;
+	border-radius: 2px;
+}
+.close-popup,.submit-popup{
+	display: flex;
+	justify-content: flex-end;
+	margin-bottom: 1em;
+	button{
+		background-color: red;
+		width: 30px;
+		height: 30px;
 	}
-	.close-button,.serealise-button{
-		font-size: 2em;
-		border:none;
-		color: red;
-		background-color:transparent;
-		margin:0;
-	}
-	.serealise-button{
-		color:green;
-	}
-	.warning{
-		color:red;
-	}
+}
+.submit-popup{
+	margin:1em;
+	justify-content: space-around;
+	button{background-color: green}
 }
