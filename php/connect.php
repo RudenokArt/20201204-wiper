@@ -1,5 +1,5 @@
 <?php 
-
+header('Content-type: text/html; charset=utf-8');
 $db_host = "localhost"; // Подключаемся к базе
 $db_user = "e25532i4_db"; // Логин БД
 $db_password = "KozaDereza"; // Пароль БД
