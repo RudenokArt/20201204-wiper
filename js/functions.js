@@ -1,21 +1,69 @@
-let content ={
-	page: 'brand',
-	sql:'SELECT * FROM `catalog_brand`',
+let content={
+	page:'brand',
 	brand:'',
-	parent:'',
+	brandId:'',
+	model:'',
+	modelId:'',
+	modification:'',
+	modificationId:'',
+	detail:'',
+	detailId:'',
+	sql(){
+		if (this.page=='brand') 
+			{return 'SELECT * FROM `catalog_brand`';}
+		else if (this.page=='model') 
+			{return 'SELECT * FROM `catalog_model` WHERE brand="'+this.brandId+'"';}
+		else if (this.page=='modification') 
+			{return 'SELECT * FROM `catalog_modification` WHERE model="'+this.modelId+'"';}
+		else if (this.page=='detail') 
+			{return 'SELECT * FROM `catalog_detail` WHERE modification="'+this.modificationId+'"';}
+	}
 }
-startPage();
-function startPage () {
+pageOnLoad();
+function pageOnLoad () {
 	hidePopup();
 	catalogName();
 	getContentData();
+}
+function hidePopup () {
+	$('.wrapper-popup').hide();
+	$('form').hide();
+	$('.warning').html('');
 }
 function catalogName () { // название каталога
 	$.post('php/catalog-name.php',{data:'data'}, 
 		(data)=>{$('.navigation-catlog').html(data)});
 }
+function showPopup (form) {
+	$('.wrapper-popup').show();
+	$(form).show();
+	$('.add-id').attr('value',Math.round(Math.random()*10000000));
+	$('.page-list').attr('value',content.page);
+	content.form=form;
+}
+function submitForm () {
+	let form=$(content.form);
+	let check=checkForm(form);
+	if (check==false) {
+		$('.warning').html('Заполните все поля формы!');
+	}
+	else{
+		$('.warning').html('');
+		form[0].submit();
+	}
+}
+function checkForm (form) {
+	let arr=$(form).children('.form-control');
+	let check=true;
+	for (var i = 0; i < arr.length; i++) {
+		if (arr[i].value==''||arr[i].value==null||arr[i].value==undefined){
+			check=false;
+		}
+	}
+	return check;
+}
 function getContentData () {
-	$.post('php/select.php',{data:content.sql}, parseContentData);
+	$.post('php/select.php',{data:content.sql()}, parseContentData);
 	//
 }
 function parseContentData (data) {
@@ -58,100 +106,62 @@ function itemDiscriber (arr) {
 		{describe=describe+'<br>тип двигателя: '+arr[3];}
 	return describe;
 }
-function hidePopup () {
-	$('.wrapper-popup').hide();
-	$('form').hide();
-	$('.warning').html('');
-}
-function showPopup (form) {
-	$('.wrapper-popup').show();
-	$(form).show();
-	$('.add-id').attr('value',Math.round(Math.random()*10000000));
-	$('.page-id').attr('value',content.pageId);
-	$('.page-list').attr('value',content.page);
-	content.form=form;
-}
-function submitForm () {
-	let form=$(content.form);
-	let check=checkForm(form);
-	if (check==false) {
-		$('.warning').html('Заполните все поля формы!');
-	}
-	else{
-		$('.warning').html('');
-		form[0].submit();
+function itemDelete () {
+	let SQL='DELETE FROM `catalog_'+content.page+'` WHERE `id`="'+this.value+'"';
+	let ask=confirm('Удалить?');
+	if(ask){
+		$.post('php/remove-file.php',{data:this.value}, sqlQuery(SQL));
 	}
 }
-function checkForm (form) {
-	let arr=$(form).children('.form-control');
-	let check=true;
-	for (var i = 0; i < arr.length; i++) {
-		if (arr[i].value==''||arr[i].value==null||arr[i].value==undefined){
-			check=false;
-		}
-	}
-	return check;
-}
-function categorySelect () {
-	if (content.page=='brand') {
-		content.parent='brand';
-		content.page='model';
-	}
-	else if(content.page=='model'){
-		content.parent='model';
-		content.page='modification';
-	}
-	let item;
-	if(this.title==''||this.title==undefined||this.title==null){item=this.id;}
-	else{item=this.title};
-	content.sql='SELECT * FROM `catalog_'+content.page+'`'+
-	' WHERE `'+content.parent+'`="'+item+'"';
-	let SQL='SELECT * FROM `catalog_'+content.parent+'`'+
-	' WHERE `id`="'+item+'"';
-	$.post('php/select.php',{data:SQL},(data)=>{dataParse(data,'content');});
-	navigation();
+function sqlQuery (SQL) {
+	$.post('php/sql.php',{data:SQL}, getContentData);
+	//
 }
 function itemSelect (e) {
-	e.stopPropagation(); 
-	let task=this.className.split('_');
-	task=task[0];
+	e.stopPropagation();
 	let sql='SELECT * FROM `catalog_'+content.page+'`  WHERE `id`="'+this.value+'"';
-	$.post('php/select.php',{data:sql},(data)=>{dataParse(data,task);});
+	$.post('php/select.php',{data:sql},(data)=>{editItem(data)});
 }
-function dataParse (data,task) {
-	console.log(data,task)
-	let arr=JSON.parse(data);
-	if (task=='delete') {itemDelete(arr[0]);}
-	else if (task=='edit') {itemEdit(arr[0]);}
-	else if (task=='content'){
-		getContentData();
-	}
-}
-function itemEdit (item) {
+function editItem(data){
 	showPopup('.'+content.page+'-form-edit');
+	let item=JSON.parse(data);
+	item=item[0];
 	$('.edit-id').attr('value',item.id);
 	$('.edit-brand').attr('value',item.brand);
 	$('.edit-model').attr('value',item.model);
+	$('.edit-modification').attr('value',item.modification);
+	$('.edit-detail').attr('value',item.detail);
 }
-function itemDelete (item) {
-	let sql='DELETE FROM `catalog_'+content.page+'` WHERE id="'+item.id+'"';
-	let ask=confirm('Удалить?');
-	if(ask){
-		$.post('php/sql.php',{data:sql}, getContentData);
-		$.post('php/remove-file.php',{data:item.id}, (data)=>console.log(data));
+function categorySelect () {
+	let sql='SELECT * FROM `catalog_'+content.page+'`  WHERE `id`="'+this.id+'"';
+	$.post('php/select.php',{data:sql},(data)=>{pageCategory(data)});
+}
+function pageCategory (data) {
+	let item=JSON.parse(data);
+	if(content.page=='brand'){
+		content.page='model';
+		content.brand=item[0].brand;
+		content.brandId=item[0].id;
+		$('.page-id').attr('value',content.brandId);
+		$('.navigation-brand').html(' &#8594 '+content.brand);
+		$('.navigation-brand').attr('title',content.brandId);;
 	}
-}
-function rootBack () {
-	content.page='brand';
-	content.sql='SELECT * FROM `catalog_brand`';
-	content.brand='';
-	content.parent='';
+	else if(content.page=='model'){
+		content.page='modification';
+		content.model=item[0].model;
+		content.modelId=item[0].id;
+		$('.page-id').attr('value',content.modelId);
+		$('.navigation-model').html(' &#8594 '+content.model.split(';')[0]);
+		$('.navigation-model').attr('title',content.modelId);
+	}
+	else if(content.page=='modification'){
+		content.page='detail';
+		content.modification=item[0].modification;
+		content.modificationId=item[0].id;
+		$('.page-id').attr('value',content.modificationId);
+		$('.navigation-modification').html(' &#8594 '+content.modification);
+		$('.navigation-modification').attr('title',content.modificationId);
+	}
 	getContentData();
 }
-function navigation (step) {
-	let arr=$('.navigation').children('span');
-	for (var i = step; i < arr.length; i++) {
-		arr[i].innerHTML='';
-	}
-}
-// console.log(content)
+//           console.log(content)

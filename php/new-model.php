@@ -9,8 +9,5 @@ $name=explode('.', $name);
 move_uploaded_file($take, '../picture/'.$id.'.jpg');
 $mysqli->query('INSERT INTO `catalog_model`(`id`,`model`,`brand`) 
 	VALUES ("'.$id.'","'.$model.'","'.$brand.'")');
-print_r($name);
-echo '<br>'.$model;
-
 ?>
 <script>document.location.href = "../admin.php";</script>

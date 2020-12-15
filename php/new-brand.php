@@ -8,8 +8,6 @@ $name=explode('.', $name);
 move_uploaded_file($take, '../picture/'.$id.'.jpg');
 $mysqli->query('INSERT INTO `catalog_brand`(`id`,`brand`) 
 	VALUES ("'.$id.'","'.$brand.'")');
-print_r($name);
-echo '<br>'.$brand;
 
 ?>
 <script>document.location.href = "../admin.php";</script>
