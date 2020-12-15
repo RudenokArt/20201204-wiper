@@ -16,6 +16,8 @@
 	<title>Document</title>
 </head>
 <body>
+	<p>
+	</p>
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12">
@@ -57,6 +59,7 @@
 		</div>
 	</div>
 	<div class="wrapper-popup">
+
 		<div class="popup">
 			<div class="close-popup">
 				<button class="close-popup-button">
@@ -111,7 +114,7 @@
 				</form>
 				<form action="php/model-list.php" method="POST" class="model-list-form">
 					<h3>Загрузка списка МОДЕЛЕЙ</h3>
-					<input type="text"name="pageId"class="page-id"style="/*display:none*/;">
+					<input type="text"name="pageId"class="page-id"style="display:none;">
 					<textarea name="list" cols="50" rows="10" class="form-control"></textarea>
 				</form>
 

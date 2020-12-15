@@ -97,6 +97,10 @@ function categorySelect () {
 		content.parent='brand';
 		content.page='model';
 	}
+	else if(content.page=='model'){
+		content.parent='model';
+		content.page='modification';
+	}
 	let item;
 	if(this.title==''||this.title==undefined||this.title==null){item=this.id;}
 	else{item=this.title};
@@ -105,6 +109,7 @@ function categorySelect () {
 	let SQL='SELECT * FROM `catalog_'+content.parent+'`'+
 	' WHERE `id`="'+item+'"';
 	$.post('php/select.php',{data:SQL},(data)=>{dataParse(data,'content');});
+	navigation();
 }
 function itemSelect (e) {
 	e.stopPropagation(); 
@@ -114,17 +119,11 @@ function itemSelect (e) {
 	$.post('php/select.php',{data:sql},(data)=>{dataParse(data,task);});
 }
 function dataParse (data,task) {
+	console.log(data,task)
 	let arr=JSON.parse(data);
 	if (task=='delete') {itemDelete(arr[0]);}
 	else if (task=='edit') {itemEdit(arr[0]);}
 	else if (task=='content'){
-		let node=$('.navigation-'+content.parent);
-		node.unbind();
-		node.attr('title',arr[0].id);
-		node.html('&#8594'+arr[0][content.parent]);
-		node.click(categorySelect);
-		content[content.parent]=arr[0].brand;
-		content.pageId=arr[0].id;
 		getContentData();
 	}
 }
@@ -148,7 +147,6 @@ function rootBack () {
 	content.brand='';
 	content.parent='';
 	getContentData();
-	navigation(1);
 }
 function navigation (step) {
 	let arr=$('.navigation').children('span');
@@ -156,3 +154,4 @@ function navigation (step) {
 		arr[i].innerHTML='';
 	}
 }
+// console.log(content)
