@@ -40,3 +40,4 @@ function backModel () {
 	$('.navigation-modification').attr('');
 	getContentData();
 }
+// console.log(content)
