@@ -134,10 +134,13 @@ function itemDelete (data,itemId) {
 	try {arr=JSON.parse(data);} catch(e) {console.log(e);}
 	if(arr.length>0){check=false;}
 	let SQL='DELETE FROM `catalog_'+content.page+'` WHERE `id`="'+itemId+'"';
-	let ask=confirm('Удалить?');
-	if(ask==true&&check==true){
-		$.post('php/remove-file.php',{data:this.value}, sqlQuery(SQL));
-	} else{alert('Удаление запрещено! Каталог содерижт вложенные элементы.')}
+	if (check==true){
+		let ask=confirm('УДАЛИТЬ?');
+		if(ask==true){
+			$.post('php/remove-file.php',{data:this.value}, sqlQuery(SQL));
+		}
+	}
+	else{alert('Удаление запрещено! Каталог содерижт вложенные элементы.')}
 }
 function sqlQuery (SQL) {
 	$.post('php/sql.php',{data:SQL}, getContentData);
