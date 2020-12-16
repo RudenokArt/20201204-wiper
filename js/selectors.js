@@ -3,7 +3,7 @@ $('.close-popup-button').click(()=>{hidePopup();});
 $('.submit-popup-button').click(submitForm);
 $('.item-add').click(()=>{showPopup('.'+content.page+'-form');});
 $('.brand-list-add').click(()=>{showPopup('.'+content.page+'-list-form');});
-$('body').delegate('.delete_button','click',itemDelete);
+$('body').delegate('.delete_button','click',checkDelete);
 $('body').delegate('.edit_button','click',itemSelect);
 $('body').delegate('.content-item','click',categorySelect);
 $('.navigation-catlog').click(backRoot);
