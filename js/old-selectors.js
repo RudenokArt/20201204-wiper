@@ -1,9 +1,0 @@
-$('.close-popup-button').click(()=>{hidePopup();});
-$('.catalog-name-button').click(()=>{showPopup('.catalog-form');});
-$('.item-add').click(()=>{showPopup('.'+content.page+'-form');});
-$('.brand-list-add').click(()=>{showPopup('.'+content.page+'-list-form');});
-$('.submit-popup-button').click(submitForm);
-$('body').delegate('.content-item','click',categorySelect);
-$('body').delegate('.delete_button','click',itemSelect);
-$('body').delegate('.edit_button','click',itemSelect);
-$('.navigation-catlog').click(rootBack);

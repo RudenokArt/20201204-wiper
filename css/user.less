@@ -1,25 +1,74 @@
-body{
-	color:#1c448d;
-	font-family: "Open Sans", sans-serif;
+a{
+	text-decoration: none;
 }
-div{
-	// border:1px solid red;
-}
-.delete,.edit,.picture-edit,.catalog-name-button,
-{
-	display:none;
-}
-.content-item{
-	transition-duration : 1s;
+.wrapper{
 	display:flex;
-	border:1px solid #1c448d;
-	font-size: 18px;
+	height:100%;
+}
+.header-top{
+	line-height: 30px;
+	font-size: 16px;
+	color: #222;
+}
+.search{
+	margin:auto;
+	display: flex;
 	
 }
-.content-item:hover{
-	transition-duration : 0.5s;
-	box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+.button-search, .button-choise{
+	height:40px;
+	width:80px;
+	padding:0;
+	border:1px solid #123a83;
+	border-radius:none;
+	background-color:#bd283a;
 }
-.content-item-tab{
-	margin:auto;
+.input-search{
+	padding-left:1em;
+	height:40px;
+	width:300px;
+	border:1px solid #123a83;
+	border-right: none;
+	border-left: none;
+	border-radius:none;
+}
+.header-menu{
+	margin-top:1em;
+	background-color:#1c448d;
+	font-size: 10px;
+	display:flex;
+}
+.btn{
+	border-radius:0;
+	padding: 1em;
+	border-radius: 2px;
+	background: #bd283a;
+	color: #fff;
+	text-align: center;
+	border: none;
+	font-size: 14px;
+	font-weight: 300;
+	cursor: pointer;
+	height:100%;
+}
+.dropdown-item:hover{
+	background-color:#1c448d;
+	margin:0;
+	color:white;
+}
+.right-border{
+	border-right:1px solid #1c448d;
+}
+.button-choise{
+	background-color:white;
+	color:#1c448d;
+	width:40px;
+	height:40px;
+	padding:0;
+	border:1px solid #1c448d;
+	border-radius:0;
+}
+#n-search, #a-search{cursor:pointer;}
+.admin{
+	display:none;
 }

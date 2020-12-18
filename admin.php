@@ -1,21 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<?php include_once 'header-admin.php' ?>
 
-	<script src="https://code.jquery.com/jquery-1.12.1.min.js"></script>
-	<link rel="stylesheet/less" type="text/css" href="css/style.less" />
-	<script src="//cdn.jsdelivr.net/npm/less" ></script>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
-
-	<link rel="stylesheet" href="css/style.less">
-
-
-
-	<title>Document</title>
-</head>
 <body>
 	<p>
 	</p>
@@ -108,7 +92,7 @@
 					</p>
 					<input type="text" name="id" class="add-id" style="display: none;">
 					<input type="text"name="pageId"class="page-id"style="display: none;">
-					<input type="text" class="form-control" name="modification" placeholder="модификация">
+					<input type="text" class="form-control" name="modification" placeholder="модификация;модель;объем;тип;мощность двигателя">
 				</form>
 				<form action="php/edit-brand.php" enctype="multipart/form-data" method="POST" class="brand-form-edit">
 					<h3>Редактирование АВТО</h3>
@@ -178,8 +162,4 @@
 			</div>
 		</div>
 	</div>
-	<script src="js/navigation.js"></script>
-	<script src="js/functions.js"></script>
-	<script src="js/selectors.js"></script>
-</body>
-</html>
+	<?php include_once 'footer.php' ?>
