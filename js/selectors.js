@@ -9,3 +9,4 @@ $('body').delegate('.content-item','click',categorySelect);
 $('.navigation-catlog').click(backRoot);
 $('.navigation-brand').click(backBrand);
 $('.navigation-model').click(backModel);
+// $('input').show();

@@ -1,5 +1,6 @@
 let content={
 	page:'brand',
+	pageId:'',
 	brand:'',
 	brandId:'',
 	model:'',
@@ -35,12 +36,23 @@ function catalogName () {
 	$.post('php/catalog-name.php',{data:'data'}, 
 		(data)=>{$('.navigation-catlog').html(data);});
 }
+function catalogDecoration() {
+	let discribe='<div class="decoration">'+
+	content.brand+'<br>'+
+	content.model+'<br>'+
+	content.modification+'</div>';
+	let img='<div class="decoration">'+
+	'<img src="picture/'+content.pageId+'.jpg" width="100" alt=" "></div>';
+	$('.catalog-image').html(img);
+	$('.catalog-discribe').html(discribe);
+}
 function showPopup (form) {
 	$('.wrapper-popup').show();
 	$(form).show();
 	$('.add-id').attr('value',Math.round(Math.random()*10000000));
 	$('.page-list').attr('value',content.page);
 	content.form=form;
+	$('.page-id').attr('value',content.pageId);
 }
 function submitForm () {
 	let form=$(content.form);
@@ -66,6 +78,8 @@ function checkForm (form) {
 function getContentData () {
 	$.post('php/select.php',{data:content.sql()}, parseContentData);
 	setLocalStorage();
+	catalogDecoration();
+	console.log(content);
 }
 function parseContentData (data) {
 	let arr=JSON.parse(data);
@@ -102,22 +116,14 @@ function itemDiscriber (arr) {
 		let describe="";
 		if (arr[1]!=''&&arr[1]!=undefined&&arr[1]!=null)
 			{describe=describe+'годы выпуска: '+arr[1];}
-		if (arr[2]!=''&&arr[2]!=undefined&&arr[2]!=null)
-			{describe=describe+'<br>тип кузова: '+arr[2];}
-		if (arr[3]!=''&&arr[3]!=undefined&&arr[3]!=null)
-			{describe=describe+'<br>тип двигателя: '+arr[3];}
 		return describe;
 	}
 	else if (content.page=='modification') {
 		let describe="";
 		if (arr[1]!=''&&arr[1]!=undefined&&arr[1]!=null)
-			{describe=describe+'Модель двигателя: '+arr[1];}
+			{describe=describe+'Объем двигателя: '+arr[1];}
 		if (arr[2]!=''&&arr[2]!=undefined&&arr[2]!=null)
-			{describe=describe+'<br>Объем двигателя: '+arr[2];}
-		if (arr[3]!=''&&arr[3]!=undefined&&arr[3]!=null)
-			{describe=describe+'<br>Тип двигателя: '+arr[3];}
-		if (arr[3]!=''&&arr[3]!=undefined&&arr[3]!=null)
-			{describe=describe+'<br>Мощность л.с.: '+arr[4];}
+			{describe=describe+'<br>Мощность л.с.: '+arr[2];}
 		return describe;
 	}
 	else if (content.page=='detail') {
@@ -164,6 +170,7 @@ function editItem(data){
 function categorySelect () {
 	let sql='SELECT * FROM `catalog_'+content.page+'`  WHERE `id`="'+this.id+'"';
 	$.post('php/select.php',{data:sql},(data)=>{pageCategory(data);});
+	content.pageId=this.id;
 }
 function pageCategory (data) {
 	let item=JSON.parse(data);
@@ -171,7 +178,7 @@ function pageCategory (data) {
 		content.page='model';
 		content.brand=item[0].brand;
 		content.brandId=item[0].id;
-		$('.page-id').attr('value',content.brandId);
+		// $('.page-id').attr('value',content.brandId);
 		$('.navigation-brand').html(' &#8594 '+content.brand.split(';')[0]);
 		$('.navigation-brand').attr('title',content.brandId);
 	}
@@ -179,7 +186,7 @@ function pageCategory (data) {
 		content.page='modification';
 		content.model=item[0].model;
 		content.modelId=item[0].id;
-		$('.page-id').attr('value',content.modelId);
+		// $('.page-id').attr('value',content.modelId);
 		$('.navigation-model').html(' &#8594 '+content.model.split(';')[0]);
 		$('.navigation-model').attr('title',content.modelId);
 	}
@@ -187,7 +194,7 @@ function pageCategory (data) {
 		content.page='detail';
 		content.modification=item[0].modification;
 		content.modificationId=item[0].id;
-		$('.page-id').attr('value',content.modificationId);
+		// $('.page-id').attr('value',content.modificationId);
 		$('.navigation-modification').html(' &#8594 '+content.modification.split(';')[0]);
 		$('.navigation-modification').attr('title',content.modificationId);
 	}

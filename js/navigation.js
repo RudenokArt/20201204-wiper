@@ -1,5 +1,6 @@
 function backRoot () {
 	content.page='brand';
+	content.pageId='';
 	content.brand='';
 	content.brandId='';
 	content.model='';
@@ -17,9 +18,10 @@ function backRoot () {
 	getContentData();
 }
 function backBrand () {
+	content.pageId=content.brandId;
 	content.page='model';
 	content.model='';
-	content.modelId='';
+	content.modelId='';t
 	content.modification='';
 	content.modificationId='';
 	content.detail='';
@@ -31,6 +33,7 @@ function backBrand () {
 	getContentData();
 }
 function backModel () {
+	content.pageId=content.modelId;
 	content.page='modification';
 	content.modification='';
 	content.modificationId='';
@@ -51,6 +54,7 @@ function setLocalStorage () {
 function checkLocalStorage () {
 	if (localStorage.check=='true') {
 		content.page=localStorage.page;
+		content.pageId=localStorage.pageId;
 		content.brand=localStorage.brand;
 		content.brandId=localStorage.brandId;
 		content.model=localStorage.model;

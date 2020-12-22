@@ -1,8 +1,14 @@
 <?php include_once 'header-admin.php' ?>
 
 <body>
-	<p>
-	</p>
+	<div class="catalog-decoration">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-2 catalog-image"></div>
+				<div class="col-sm-2 catalog-discribe"></div>
+			</div>
+		</div>
+	</div>
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12">
@@ -72,7 +78,7 @@
 					</p>
 					<input type="text" name="id" class="add-id" style="display: none;">
 					<input type="text"name="pageId"class="page-id"style="display: none;">
-					<input type="text" class="form-control" name="model" placeholder="модель;г.в.;кузов;двигатель;">
+					<input type="text" class="form-control" name="model" placeholder="модель;г.в.">
 				</form>
 				<form action="php/new-detail.php" enctype="multipart/form-data" method="POST" class="detail-form">
 					<h3>Добавление ДЕТАЛИ</h3>
@@ -92,7 +98,7 @@
 					</p>
 					<input type="text" name="id" class="add-id" style="display: none;">
 					<input type="text"name="pageId"class="page-id"style="display: none;">
-					<input type="text" class="form-control" name="modification" placeholder="модификация;модель;объем;тип;мощность двигателя">
+					<input type="text" class="form-control" name="modification" placeholder="модификация;объем двигателя;мощность">
 				</form>
 				<form action="php/edit-brand.php" enctype="multipart/form-data" method="POST" class="brand-form-edit">
 					<h3>Редактирование АВТО</h3>
