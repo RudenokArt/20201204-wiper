@@ -14,6 +14,9 @@
     <script src="https://code.jquery.com/jquery-1.12.1.min.js"></script>
 
 	<link rel="stylesheet" href="css/style.less">
+
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
 	
 
 

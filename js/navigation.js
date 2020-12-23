@@ -21,7 +21,7 @@ function backBrand () {
 	content.pageId=content.brandId;
 	content.page='model';
 	content.model='';
-	content.modelId='';t
+	content.modelId='';
 	content.modification='';
 	content.modificationId='';
 	content.detail='';

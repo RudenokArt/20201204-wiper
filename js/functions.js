@@ -40,11 +40,23 @@ function catalogDecoration() {
 	let discribe='<div class="decoration">'+
 	content.brand+'<br>'+
 	content.model+'<br>'+
-	content.modification+'</div>';
+	itemParser(content.modification)[0]+
+	'</div>';
 	let img='<div class="decoration">'+
 	'<img src="picture/'+content.pageId+'.jpg" width="100" alt=" "></div>';
 	$('.catalog-image').html(img);
 	$('.catalog-discribe').html(discribe);
+	metaTags();
+}
+function metaTags () {
+	let meta='Каталог '+
+	itemParser(content.brand)[0]+' '+
+	itemParser(content.model)[0]+' '+
+	itemParser(content.modification)[0];
+	$('title').html(meta);
+	$('meta[name="description"]').attr('content',meta);
+	$('meta[name="keywords"]').attr('content',meta);
+	
 }
 function showPopup (form) {
 	$('.wrapper-popup').show();
@@ -79,7 +91,6 @@ function getContentData () {
 	$.post('php/select.php',{data:content.sql()}, parseContentData);
 	setLocalStorage();
 	catalogDecoration();
-	console.log(content);
 }
 function parseContentData (data) {
 	let arr=JSON.parse(data);
