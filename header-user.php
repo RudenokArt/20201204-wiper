@@ -1,5 +1,6 @@
 <?php include_once 'meta.php' ?>
-<link rel="stylesheet" href="css/user.less">
+<!-- <link rel="stylesheet" href="css/user.less"> -->
+<link rel="stylesheet" href="css/user.css">
 <title>Каталог</title>
 </head>
 

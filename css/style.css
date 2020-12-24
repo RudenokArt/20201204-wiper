@@ -1,0 +1,92 @@
+body {
+  font-family: "Open Sans", sans-serif;
+  color: #1c448d;
+}
+button {
+  padding: 1em;
+  border-radius: 2px;
+  background: #1c448d;
+  color: #fff;
+  text-align: center;
+  border: none;
+  font-size: 14px;
+  font-weight: 300;
+  cursor: pointer;
+}
+button:hover {
+  background: rgba(28, 68, 141, 0.8);
+}
+input {
+  min-width: 30vw;
+}
+textarea {
+  text-align: left;
+}
+.content-main {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-bottom: 100px;
+}
+.wrapper-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  background: rgba(0, 0, 0, 0.5);
+}
+.popup {
+  background: white;
+  border-radius: 2px;
+  margin: auto;
+}
+.close-popup,
+.submit-popup {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1em;
+}
+.close-popup button,
+.submit-popup button {
+  background-color: red;
+}
+.submit-popup {
+  margin: 1em;
+  justify-content: space-around;
+}
+.submit-popup button {
+  background-color: green;
+}
+.warning {
+  color: red;
+}
+.content-item {
+  margin-top: 1em;
+  cursor: pointer;
+  border-radius: 3px;
+  border: 1px solid #1c448d;
+  text-align: center;
+}
+.content-item img {
+  height: 100px;
+}
+.content-item:hover {
+  box-shadow: 0px 0px 10px 0px #000000;
+}
+.navigation {
+  cursor: pointer;
+}
+.catalog-decoration {
+  margin-bottom: 1em;
+  margin-top: 1em;
+}
+.catalog-image,
+.catalog-discribe {
+  display: flex;
+}
+.decoration {
+  margin: auto;
+}
