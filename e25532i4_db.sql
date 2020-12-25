@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost
--- Время создания: Дек 24 2020 г., 20:00
+-- Время создания: Дек 25 2020 г., 19:07
 -- Версия сервера: 5.6.34
 -- Версия PHP: 7.1.3
 
@@ -29,17 +29,10 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `catalog_brand` (
-  `id` int(10) NOT NULL,
-  `brand` varchar(100) NOT NULL
+  `id` int(11) NOT NULL,
+  `brand` varchar(100) NOT NULL,
+  `N` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Дамп данных таблицы `catalog_brand`
---
-
-INSERT INTO `catalog_brand` (`id`, `brand`) VALUES
-(4745540, 'BMW2'),
-(6256147, 'Audi');
 
 -- --------------------------------------------------------
 
@@ -50,7 +43,8 @@ INSERT INTO `catalog_brand` (`id`, `brand`) VALUES
 CREATE TABLE `catalog_detail` (
   `id` int(10) NOT NULL,
   `detail` varchar(100) NOT NULL,
-  `modification` varchar(100) NOT NULL
+  `modification` varchar(100) NOT NULL,
+  `N` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -60,21 +54,11 @@ CREATE TABLE `catalog_detail` (
 --
 
 CREATE TABLE `catalog_model` (
-  `id` int(11) NOT NULL,
+  `id` int(10) NOT NULL,
   `model` varchar(100) NOT NULL,
-  `brand` varchar(100) NOT NULL
+  `brand` varchar(100) NOT NULL,
+  `N` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Дамп данных таблицы `catalog_model`
---
-
-INSERT INTO `catalog_model` (`id`, `model`, `brand`) VALUES
-(600137, 'A80;1985-2000', '6256147'),
-(3789399, 'A100;1980-2005', '6256147'),
-(4996638, '2.0', '4745540'),
-(7709303, '2.0', ''),
-(9280864, '2.5', '4745540');
 
 -- --------------------------------------------------------
 
@@ -85,16 +69,9 @@ INSERT INTO `catalog_model` (`id`, `model`, `brand`) VALUES
 CREATE TABLE `catalog_modification` (
   `id` int(10) NOT NULL,
   `modification` varchar(100) NOT NULL,
-  `model` varchar(100) NOT NULL
+  `model` varchar(100) NOT NULL,
+  `N` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Дамп данных таблицы `catalog_modification`
---
-
-INSERT INTO `catalog_modification` (`id`, `modification`, `model`) VALUES
-(5107337, 'v12;2.5;250', '3789399'),
-(6385373, 'v8;2.0;180лс', '3789399');
 
 --
 -- Индексы сохранённых таблиц
@@ -104,25 +81,25 @@ INSERT INTO `catalog_modification` (`id`, `modification`, `model`) VALUES
 -- Индексы таблицы `catalog_brand`
 --
 ALTER TABLE `catalog_brand`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`N`);
 
 --
 -- Индексы таблицы `catalog_detail`
 --
 ALTER TABLE `catalog_detail`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`N`);
 
 --
 -- Индексы таблицы `catalog_model`
 --
 ALTER TABLE `catalog_model`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`N`);
 
 --
 -- Индексы таблицы `catalog_modification`
 --
 ALTER TABLE `catalog_modification`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`N`);
 
 --
 -- AUTO_INCREMENT для сохранённых таблиц
@@ -132,25 +109,25 @@ ALTER TABLE `catalog_modification`
 -- AUTO_INCREMENT для таблицы `catalog_brand`
 --
 ALTER TABLE `catalog_brand`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6256148;
+  MODIFY `N` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `catalog_detail`
 --
 ALTER TABLE `catalog_detail`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `N` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `catalog_model`
 --
 ALTER TABLE `catalog_model`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9280865;
+  MODIFY `N` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `catalog_modification`
 --
 ALTER TABLE `catalog_modification`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6385374;
+  MODIFY `N` int(10) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
